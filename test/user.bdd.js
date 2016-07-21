@@ -1,3 +1,4 @@
+'use strict';
 var User = require('../src/boundary/user');
 var Database = require('./config/database');
 var sinon = require('sinon');
