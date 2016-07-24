@@ -1,11 +1,12 @@
+'use strict';
 var CreateFacultyProfile = require('../control/create-faculty-profile');
 var UpdateFacultyProfile = require('../control/update-faculty-profile');
 var GetFacultyProfileByFacultyId = require('../control/get-faculty-profile-by-faculty-id');
 var DeleteFacultyProfileByFacultyId = require('../control/delete-faculty-profile-by-faculty-id');
 
 module.exports = {
-    getProfileByFacultyId: function(facultyId, callback) {
-        new GetFacultyProfileByFacultyId(facultyId, function(err, result) {
+    getProfileByFacultyId: function (facultyId, callback) {
+        new GetFacultyProfileByFacultyId(facultyId, function (err, result) {
             if (err) {
                 callback(err);
             } else {
@@ -14,11 +15,11 @@ module.exports = {
                 } else {
                     callback(undefined, result);
                 }
-                
+
             }
         });
     },
-    create: function(param, callback) {
+    create: function (param, callback) {
         new CreateFacultyProfile({
             facultyId: param.facultyId,
             name: {
@@ -39,15 +40,15 @@ module.exports = {
             department: param.department
         }, callback);
     },
-    update: function(param, callback) {
+    update: function (param, callback) {
         new UpdateFacultyProfile(param.facultyId, param, callback);
     },
-    removeFaculty: function(facultyId, callback) {
-        new DeleteFacultyProfileByFacultyId(facultyId, function(err, result) {
+    removeFaculty: function (facultyId, callback) {
+        new DeleteFacultyProfileByFacultyId(facultyId, function (err) {
             if (!err) {
                 callback(undefined, {
-                            message: 'Faculty has been removed.'
-                        });
+                    message: 'Faculty has been removed.'
+                });
             } else {
                 callback(err);
             }

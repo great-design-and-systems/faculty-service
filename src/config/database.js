@@ -1,6 +1,7 @@
+'use strict';
 var mongoose = require('mongoose');
 
-module.exports = function() {
+module.exports = function () {
     var PORT = process.env.DB_PORT || 27017;
     var HOST = process.env.DB_HOST || 'localhost';
     var DB = process.env.DB || 'faculty';

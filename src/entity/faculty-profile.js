@@ -1,9 +1,10 @@
+'use strict';
 var mongoose = require('mongoose');
 
 var contactPersonSchema = new mongoose.Schema({
-    name : String,
-    email : String,
-    phoneNo : String
+    name: String,
+    email: String,
+    phoneNo: String
 });
 var facultyProfileSchema = new mongoose.Schema({
     facultyId: {
@@ -20,7 +21,7 @@ var facultyProfileSchema = new mongoose.Schema({
     address: String,
     barcode: String,
     contactNo: String,
-    contactPerson: [ contactPersonSchema ],
+    contactPerson: [contactPersonSchema],
     department: String,
     createdOn: { type: Date, default: Date.now }
 });
