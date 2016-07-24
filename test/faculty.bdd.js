@@ -39,10 +39,10 @@
                 data.address = address;
                 data.contactNo = contactNo;
                 data.emailAddress = emailAddress;
-                data.department = department
+                data.department = department;
                 data.contactName = contactName;
                 data.contactAddress = contactAddress;
-                data.contactEmail = contactEmail
+                data.contactEmail = contactEmail;
                 data.contactPersonNo = contactPersonNo;
             });
 
