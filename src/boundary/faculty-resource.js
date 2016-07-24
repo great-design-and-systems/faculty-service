@@ -27,8 +27,7 @@ module.exports = function (app) {
             if (err) {
                 res.status(500).send(response);
             } else {
-                console.log(numberAffected);
-                res.status(200).send(numberAffected);
+                res.status(200).send({message: 'ok'});
             }
         });
     });

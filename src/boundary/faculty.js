@@ -22,22 +22,19 @@ module.exports = {
     create: function (param, callback) {
         new CreateFacultyProfile({
             facultyId: param.facultyId,
-            name: {
-                first: param.firstName,
-                middle: param.middleName,
-                last: param.lastName
-            },
-            dateOfBirth: param.dateOfBirth,
+            firstName: param.firstName,
+            middleName: param.middleName,
+            lastName: param.lastName,
+            birthDate: param.birthDate,
             gender: param.gender,
             address: param.address,
-            barcode: param.barcode,
             contactNo: param.contactNo,
-            contactPerson: {
-                name: param.contactName,
-                email: param.contactEmail,
-                phoneNo: param.contactPersonNo
-            },
-            department: param.department
+            emailAddress: param.emailAddress,
+            department: param.department,
+            contactName: param.contactName,
+            contactAddress: param.contactAddress,
+            contactEmail: param.contactEmail,
+            contactPersonNo: param.contactPersonNo
         }, callback);
     },
     update: function (param, callback) {
