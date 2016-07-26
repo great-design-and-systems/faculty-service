@@ -5,7 +5,7 @@ module.exports = function () {
     var PORT = process.env.DB_PORT || 27017;
     var HOST = process.env.DB_HOST || 'localhost';
     var DB = process.env.DB || 'faculty';
-    var USER = process.env.DN_USER;
+    var USER = process.env.DB_USER;
     var PASSWORD = process.env.DB_PASSWORD;
 
     mongoose.connect(getDBUrl());
@@ -14,6 +14,7 @@ module.exports = function () {
         var url = 'mongodb://';
         if (USER && PASSWORD) {
             url += USER;
+            url += ':';
             url += PASSWORD;
             url += '@';
         }
