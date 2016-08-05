@@ -6,14 +6,26 @@ var getCreateResponse = require('../control/get-create-response');
 var API = process.env.API_NAME || '/api/faculty/';
 
 module.exports = function (app) {
-    app.get('/', function(req, res) {
+    app.get('/', function (req, res) {
         res.status(200).send({
             domain: process.env.DOMAIN_NAME || 'Student',
             links: {
-                getProfileByStudentId: 'http://' + req.headers.host + API + 'faculty-profile/{facultyId}/',
-                create: 'http://' + req.headers.host + API + 'create/',
-                update: 'http://' + req.headers.host + API + 'update/',
-                delete: 'http://' + req.headers.host + API + '{facultyId}/'
+                getProfileByStudentId: {
+                    method: 'GET',
+                    url: 'http://' + req.headers.host + API + 'faculty-profile/:facultyId'
+                },
+                createFaculty: {
+                    method: 'POST',
+                    url: 'http://' + req.headers.host + API + 'create'
+                },
+                updateFaculty: {
+                    method: 'PUT',
+                    url: 'http://' + req.headers.host + API + 'update'
+                },
+                deleteFaculty: {
+                    method: 'DELETE',
+                    url: 'http://' + req.headers.host + API + ':facultyId'
+                }
             }
         });
     });
@@ -39,7 +51,7 @@ module.exports = function (app) {
             if (err) {
                 res.status(500).send(response);
             } else {
-                res.status(200).send({message: 'ok'});
+                res.status(200).send({ message: 'ok' });
             }
         });
     });
