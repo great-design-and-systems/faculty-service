@@ -17,16 +17,10 @@
             var firstName = 'Analyn';
             var middleName = 'Rosales';
             var lastName = 'Flores';
-            var birthDate = '1990-01-01';
             var gender = 'female';
-            var address = 'Ortigas Center, Pasig City';
             var contactNo = '09171234567';
             var emailAddress = 'analynflores@gmail.com';
             var department = 'College of Science';
-            var contactName = 'Jerico';
-            var contactAddress = 'Quezon City';
-            var contactEmail = 'jerico@gmail.com';
-            var contactPersonNo = '09174351234';
             var data = {};
 
             beforeEach(function () {
@@ -34,16 +28,10 @@
                 data.firstName = firstName;
                 data.middleName = middleName;
                 data.lastName = lastName;
-                data.birthDate = birthDate;
                 data.gender = gender;
-                data.address = address;
                 data.contactNo = contactNo;
                 data.emailAddress = emailAddress;
                 data.department = department;
-                data.contactName = contactName;
-                data.contactAddress = contactAddress;
-                data.contactEmail = contactEmail;
-                data.contactPersonNo = contactPersonNo;
             });
 
             describe('WHEN: saving faculty', function () {
@@ -62,7 +50,7 @@
                 
                     var expectedResult;
                     beforeEach(function (done) {
-                        data.address = 'Dasmarinas, Cavite';
+                        data.contactNo = '1234567890';
                         Faculty.update(data, function (err, result) {
                             expectedResult = result;
                             done();

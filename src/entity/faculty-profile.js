@@ -15,16 +15,10 @@ var facultyProfileSchema = new mongoose.Schema({
         type: String,
         required: [true, 'lastname is required.']
     },
-    birthDate: Date,
     gender: String,
-    address: String,
     contactNo: String,
     emailAddress: String,
     department: String,
-    contactName: String,
-    contactAddress: String,
-    contactEmail: String,
-    contactPersonNo: String,
     createdOn: { type: Date, default: Date.now }
 });
 
