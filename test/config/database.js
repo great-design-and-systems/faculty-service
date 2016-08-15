@@ -4,25 +4,30 @@ var mongoose = require('mongoose');
 module.exports = function(done) {
     var PORT = process.env.DB_PORT_TEST || 27017;
     var HOST = process.env.DB_HOST_TEST || 'localhost';
-    var TEST_DB = process.env.DB_TEST || 'test';
+    var TEST_DB = process.env.DB_TEST || 'faculty_test';
     var USER = process.env.DB_USER;
     var PASSWORD = process.env.DB_PASSWORD;
+    var RETRY_COUNT = process.env.RETRY_COUNT || 10;
 
     return {
         connect: connect,
         disconnect: disconnect
     };
 
-    function connect(done) {
-        if (mongoose.connection.readyState === 0) {
-            mongoose.connect(getDBUrl(), function(err) {
+    function connect(done, tries) {
+        if (!tries) tries = 0;
+        if (tries < RETRY_COUNT) {
+            mongoose.connect(getDBUrl(), function (err) {
                 if (err) {
-                    throw err;
+                    console.error('Failed to connect to mongo on startup - retrying in 5 sec', err);
+                    tries++;
+                    setTimeout(connect(done, tries), 5000);
+                } else {
+                    return clearDB(done);
                 }
-                return clearDB(done);
             });
         } else {
-            return clearDB(done);
+            throw 'Failed to connect to database';
         }
     }
 

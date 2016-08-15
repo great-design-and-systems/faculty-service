@@ -7,9 +7,27 @@ module.exports = function () {
     var DB = process.env.DB || 'faculty';
     var USER = process.env.DB_USER;
     var PASSWORD = process.env.DB_PASSWORD;
+    var RETRY_COUNT = process.env.RETRY_COUNT || 10;
 
-    mongoose.connect(getDBUrl());
+    function connect(tries) {
+        if (!tries) {
+            tries = 0;
+        }
+        if (tries < RETRY_COUNT) {
+            mongoose.connect(getDBUrl(), function (err) {
+                if (err) {
+                    console.error('Failed to connect to mongo on startup - retrying in 5 sec', err);
+                    tries++;
+                    setTimeout(connect, 5000);
+                }
+            });
+        } else {
+            throw 'Failed to connect to database';
+        }
+    }
 
+    connect();
+    
     function getDBUrl() {
         var url = 'mongodb://';
         if (USER && PASSWORD) {
