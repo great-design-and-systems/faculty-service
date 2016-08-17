@@ -8,9 +8,9 @@ var API = process.env.API_NAME || '/api/faculty/';
 module.exports = function (app) {
     app.get('/', function (req, res) {
         res.status(200).send({
-            domain: process.env.DOMAIN_NAME || 'Student',
+            domain: process.env.DOMAIN_NAME || 'Faculty',
             links: {
-                getProfileByStudentId: {
+                getProfileByFacultyId: {
                     method: 'GET',
                     url: 'http://' + req.headers.host + API + 'faculty-profile/:facultyId'
                 },
@@ -25,6 +25,10 @@ module.exports = function (app) {
                 deleteFaculty: {
                     method: 'DELETE',
                     url: 'http://' + req.headers.host + API + ':facultyId'
+                },
+                getFaculties: {
+                    method: 'GET',
+                    url: 'http://' + req.headers.host + API + 'get-faculties'
                 }
             }
         });
@@ -63,6 +67,16 @@ module.exports = function (app) {
                 res.status(500).send({
                     message: 'Failed to remove faculty id ' + req.params.facultyId + '.'
                 });
+            } else {
+                res.status(200).send(result);
+            }
+        });
+    });
+    
+    app.get(API + 'get-faculties', function (req, res) {
+        Faculty.getFaculties(req.query, function (err, result) {
+            if (err) {
+                res.status(500).send(err);
             } else {
                 res.status(200).send(result);
             }

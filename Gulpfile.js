@@ -46,8 +46,7 @@ gulp.task('server-watch', function () {
         script: INDEX_FILE,
         ext: 'js',
         env: {
-            PORT: 8002,
-            DB: 'faculty_test'
+            PORT: 8003
         },
         ignore: ['./node_modules/**']
     })

@@ -1,5 +1,6 @@
 'use strict';
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
 var facultyProfileSchema = new mongoose.Schema({
     facultyId: {
@@ -21,5 +22,7 @@ var facultyProfileSchema = new mongoose.Schema({
     department: String,
     createdOn: { type: Date, default: Date.now }
 });
+
+facultyProfileSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('FacultyProfile', facultyProfileSchema);

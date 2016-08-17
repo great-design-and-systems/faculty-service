@@ -3,6 +3,7 @@ var CreateFacultyProfile = require('../control/create-faculty-profile');
 var UpdateFacultyProfile = require('../control/update-faculty-profile');
 var GetFacultyProfileByFacultyId = require('../control/get-faculty-profile-by-faculty-id');
 var DeleteFacultyProfileByFacultyId = require('../control/delete-faculty-profile-by-faculty-id');
+var GetFaculties = require('../control/get-faculties');
 
 module.exports = {
     getProfileByFacultyId: function (facultyId, callback) {
@@ -48,6 +49,16 @@ module.exports = {
                 });
             } else {
                 callback(err);
+            }
+        });
+    },
+    getFaculties: function (queryParam, callback) {
+    	console.log(queryParam);
+        new GetFaculties(queryParam, function (err, result) {
+            if (err) {
+                callback({ message: 'Failed to get faculty records.' });
+            } else {
+                callback(undefined, result);
             }
         });
     }
