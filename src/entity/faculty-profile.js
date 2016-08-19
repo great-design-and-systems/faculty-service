@@ -1,6 +1,7 @@
 'use strict';
 var mongoose = require('mongoose');
 var mongoosePaginate = require('mongoose-paginate');
+var uniqueValidator = require('mongoose-unique-validator');
 
 var facultyProfileSchema = new mongoose.Schema({
     facultyId: {
@@ -25,5 +26,6 @@ var facultyProfileSchema = new mongoose.Schema({
 });
 
 facultyProfileSchema.plugin(mongoosePaginate);
+facultyProfileSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('FacultyProfile', facultyProfileSchema);
