@@ -20,11 +20,11 @@ module.exports = function (app) {
                 },
                 updateFaculty: {
                     method: 'PUT',
-                    url: 'http://' + req.headers.host + API + 'update'
+                    url: 'http://' + req.headers.host + API + 'update/:facultyId'
                 },
                 deleteFaculty: {
                     method: 'DELETE',
-                    url: 'http://' + req.headers.host + API + ':facultyId'
+                    url: 'http://' + req.headers.host + API + 'delete/:facultyId'
                 },
                 getFaculties: {
                     method: 'GET',
@@ -50,8 +50,8 @@ module.exports = function (app) {
         });
     });
 
-    app.put(API + 'update', function (req, res) {
-        Faculty.update(req.body, function (err, numberAffected, response) {
+    app.put(API + 'update/:facultyId', function (req, res) {
+        Faculty.update(req.params, req.body, function (err, numberAffected, response) {
             if (err) {
                 res.status(500).send(response);
             } else {
@@ -61,7 +61,7 @@ module.exports = function (app) {
     });
 
 
-    app.delete(API + ':facultyId', function (req, res) {
+    app.delete(API + 'delete/:facultyId', function (req, res) {
         Faculty.removeFaculty(req.params.facultyId, function (err, result) {
             if (err) {
                 res.status(500).send({

@@ -38,8 +38,8 @@ module.exports = {
             contactPersonNo: param.contactPersonNo
         }, callback);
     },
-    update: function (param, callback) {
-        new UpdateFacultyProfile(param.facultyId, param, callback);
+    update: function (facultyId, param, callback) {
+        new UpdateFacultyProfile(facultyId, param, callback);
     },
     removeFaculty: function (facultyId, callback) {
         new DeleteFacultyProfileByFacultyId(facultyId, function (err) {
