@@ -1,18 +1,18 @@
-(function () {
+(function() {
     'use strict';
     var Faculty = require('../src/boundary/faculty');
     var Database = require('./config/database');
     var sinon = require('sinon');
     var chai = require('chai');
     var expect = chai.expect;
-    describe('Faculty Service BDD', function () {
+    describe('Faculty Service BDD', function() {
         var db = new Database();
 
-        beforeEach(function (done) {
+        beforeEach(function(done) {
             return db.connect(done);
         });
 
-        describe('GIVEN: I have faculty data', function () {
+        describe('GIVEN: I have faculty data', function() {
             var facultyId = '123456';
             var firstName = 'Analyn';
             var middleName = 'Rosales';
@@ -23,7 +23,7 @@
             var department = 'College of Science';
             var data = {};
 
-            beforeEach(function () {
+            beforeEach(function() {
                 data.facultyId = facultyId;
                 data.firstName = firstName;
                 data.middleName = middleName;
@@ -34,56 +34,56 @@
                 data.department = department;
             });
 
-            describe('WHEN: saving faculty', function () {
+            describe('WHEN: saving faculty', function() {
                 var savedResult;
-                beforeEach(function (done) {
-                    Faculty.create(data, function (err, result) {
+                beforeEach(function(done) {
+                    Faculty.create(data, function(err, result) {
                         savedResult = result;
                         done();
                     });
                 });
 
-                it('THEN: response is faculty profile', function () {
+                it('THEN: response is faculty profile', function() {
                     expect(!!savedResult).to.equal(true);
                 });
                 describe('WHEN: updating faculty profile', function() {
-                
+
                     var expectedResult;
-                    beforeEach(function (done) {
+                    beforeEach(function(done) {
                         data.contactNo = '1234567890';
-                        Faculty.update(data, function (err, result) {
+                        Faculty.update(data, function(err, result) {
                             expectedResult = result;
                             done();
                         });
                     });
 
-                    it('THEN: faculty profile is updated', function () {
+                    it('THEN: faculty profile is updated', function() {
                         expect(expectedResult.nModified).to.be.above(0);
-                    });      
+                    });
                 });
-                describe('GIVEN: I have facultyId', function () {
+                describe('GIVEN: I have facultyId', function() {
+                    var facultyProfile;
                     describe('WHEN: getting facultyProfile', function() {
-                        var facultyProfile;
-                        beforeEach(function (done) {
+                        beforeEach(function(done) {
                             Faculty.getProfileByFacultyId(facultyId, function(err, result) {
                                 facultyProfile = result;
                                 done();
                             });
                         });
-                        it('THEN: faculty profile is retrieved', function () {
+                        it('THEN: faculty profile is retrieved', function() {
                             expect(!!facultyProfile).to.equal(true);
                         });
                     });
                     describe('WHEN: removing faculty', function() {
                         var message;
-                        beforeEach(function (done) {
-                            Faculty.removeFaculty(facultyId, function (err, result) {
+                        beforeEach(function(done) {
+                            Faculty.removeFaculty(facultyProfile._id, function(err, result) {
                                 message = result.message;
                                 done();
                             });
                         });
 
-                        it('THEN: faculty profile is removed', function () {
+                        it('THEN: faculty profile is removed', function() {
                             expect(!!message).to.equal(true);
                             expect(message).to.equal('Faculty has been removed.');
                         });
@@ -93,7 +93,7 @@
 
         });
 
-        afterEach(function (done) {
+        afterEach(function(done) {
             return db.disconnect(done);
         });
     });
