@@ -7,9 +7,7 @@ function execute(facultyId, callback) {
     new GetLogger(function(err, log) {
         logger = log;
     });
-    FacultyProfile.findOneAndRemove({
-        facultyId: facultyId
-    }, function(err, result) {
+    FacultyProfile.findByIdAndRemove(facultyId, function(err, result) {
         if (err) {
             logger.error(err);
             callback({
