@@ -9,7 +9,7 @@ function execute(param, callback) {
 		sort : param.sort
 	}, function(err, result) {
         if (err) {
-            logger.error(err);
+            logger.error('getFaculties', err);
             callback({
                 message: 'Failed to get faculty records.'
             });

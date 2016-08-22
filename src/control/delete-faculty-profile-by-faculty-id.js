@@ -5,7 +5,7 @@ var logger = require('./get-logger');
 function execute(facultyId, callback) {
     FacultyProfile.findByIdAndRemove(facultyId, function(err, result) {
         if (err) {
-            logger.error(err);
+            logger.error('deleteFaculty', err);
             callback({
                 message: 'Failed removing facultyId ID' + facultyId
             });

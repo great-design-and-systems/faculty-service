@@ -5,7 +5,7 @@ var logger = require('./get-logger');
 function execute(condition, update, callback) {
     FacultyProfile.update(condition, update, { multi: true }, function(err, result) {
         if (err) {
-            logger.error(err);
+            logger.error('update', err);
             callback({
                 message: 'Failed to update ' + condition
             });

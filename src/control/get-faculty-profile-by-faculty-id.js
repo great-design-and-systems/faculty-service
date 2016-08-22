@@ -7,7 +7,7 @@ function execute(facultyId, callback) {
         facultyId: facultyId
     }, function(err, result) {
         if (err) {
-            logger.error(err);
+            logger.error('getProfileByFacultyId', err);
             callback({
                 message: 'Failed to get faculty id: ' + facultyId
             });

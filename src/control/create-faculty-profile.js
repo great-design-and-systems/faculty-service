@@ -5,7 +5,7 @@ var logger = require('./get-logger');
 function execute(facultyProfile, callback) {
     FacultyProfile.create(facultyProfile, function(err, result) {
         if (err) {
-            logger.error(err);
+            logger.error('create', err);
             callback({
                 message: 'Failed to create faculty profile.'
             });
