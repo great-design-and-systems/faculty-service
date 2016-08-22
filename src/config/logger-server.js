@@ -1,7 +1,7 @@
 'use strict';
 var log4js = require('log4js');
 var LOG_FILE = process.env.APP_LOG || '/app/log/system.log';
-var APP_NAME = process.env.APP_NAME || 'faculty';
+var APP_NAME = process.env.APP_NAME || 'faculty_service';
 
 module.exports = function (app) {
     log4js.configure({

@@ -54,12 +54,6 @@ module.exports = {
     },
     getFaculties: function (queryParam, callback) {
     	console.log(queryParam);
-        new GetFaculties(queryParam, function (err, result) {
-            if (err) {
-                callback({ message: 'Failed to get faculty records.' });
-            } else {
-                callback(undefined, result);
-            }
-        });
+        new GetFaculties(queryParam, callback);
     }
 };
