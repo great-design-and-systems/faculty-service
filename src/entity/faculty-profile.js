@@ -22,7 +22,8 @@ var facultyProfileSchema = new mongoose.Schema({
     contactNo: String,
     emailAddress: String,
     department: String,
-    createdOn: { type: Date, default: Date.now }
+    createdOn: { type: Date, default: Date.now },
+    imageId: String
 });
 
 facultyProfileSchema.plugin(mongoosePaginate);
