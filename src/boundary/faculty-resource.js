@@ -29,6 +29,10 @@ module.exports = function (app) {
                 getFaculties: {
                     method: 'GET',
                     url: 'http://' + req.headers.host + API + 'get-faculties'
+                },
+                validateFacultyId: {
+                    method: 'GET',
+                    url: 'http://' + req.headers.host + API + 'validate-faculty-id/:facultyId'
                 }
             }
         });
@@ -75,6 +79,15 @@ module.exports = function (app) {
     
     app.get(API + 'get-faculties', function (req, res) {
         Faculty.getFaculties(req.query, function (err, result) {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                res.status(200).send(result);
+            }
+        });
+    });
+    app.get(API + 'validate-faculty-id/:facultyId', function (req, res) {
+        Faculty.validateFacultyId(req.params.facultyId, function (err, result) {
             if (err) {
                 res.status(500).send(err);
             } else {

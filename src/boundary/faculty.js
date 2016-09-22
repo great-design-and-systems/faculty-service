@@ -4,6 +4,7 @@ var UpdateFacultyProfile = require('../control/update-faculty-profile');
 var GetFacultyProfileByFacultyId = require('../control/get-faculty-profile-by-faculty-id');
 var DeleteFacultyProfileByFacultyId = require('../control/delete-faculty-profile-by-faculty-id');
 var GetFaculties = require('../control/get-faculties');
+var ValidateFacultyId = require('../control/validate-faculty-id');
 
 module.exports = {
     getProfileByFacultyId: function (facultyId, callback) {
@@ -26,16 +27,11 @@ module.exports = {
             firstName: param.firstName,
             middleName: param.middleName,
             lastName: param.lastName,
-            birthDate: param.birthDate,
             gender: param.gender,
-            address: param.address,
             contactNo: param.contactNo,
             emailAddress: param.emailAddress,
             department: param.department,
-            contactName: param.contactName,
-            contactAddress: param.contactAddress,
-            contactEmail: param.contactEmail,
-            contactPersonNo: param.contactPersonNo
+            imageId: param.imageId
         }, callback);
     },
     update: function (facultyId, param, callback) {
@@ -55,5 +51,8 @@ module.exports = {
     getFaculties: function (queryParam, callback) {
     	console.log(queryParam);
         new GetFaculties(queryParam, callback);
+    },
+    validateFacultyId: function (facultyId, callback) {
+        new ValidateFacultyId(facultyId, callback);
     }
 };

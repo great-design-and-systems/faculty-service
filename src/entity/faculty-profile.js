@@ -7,7 +7,7 @@ var facultyProfileSchema = new mongoose.Schema({
     facultyId: {
         type: String,
         required: [true, 'Faculty Id is required.'],
-        unique: true
+        unique: [true, 'Faculty ID already exists']
     },
     firstName: {
         type: String,

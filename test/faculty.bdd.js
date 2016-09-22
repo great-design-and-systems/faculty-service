@@ -33,7 +33,19 @@
                 data.emailAddress = emailAddress;
                 data.department = department;
             });
+            describe('WHEN: validating non existing facultyId', function () {
+                var result = false;
+                beforeEach(function (done) {
+                    Faculty.validateFacultyId(data.facultyId, function (err, valid) {
+                        result = valid;
+                        done();
+                    })
+                });
 
+                it('THEN: faculty id is valid', function () {
+                    expect(result).to.be.true;
+                });
+            });
             describe('WHEN: saving faculty', function() {
                 var savedResult;
                 beforeEach(function(done) {
@@ -45,6 +57,19 @@
 
                 it('THEN: response is faculty profile', function() {
                     expect(!!savedResult).to.equal(true);
+                });
+                describe('WHEN: validating existing facultyId', function () {
+                    var result = false;
+                    beforeEach(function (done) {
+                    	Faculty.validateFacultyId(data.facultyId, function (err, valid) {
+                            result = valid;
+                            done();
+                        })
+                    });
+
+                    it('THEN: faculty id is invalid', function () {
+                        expect(result).to.be.undefined;
+                    });
                 });
                 describe('WHEN: updating faculty profile', function() {
 
