@@ -20,7 +20,7 @@ module.exports = function (app) {
                 },
                 updateFaculty: {
                     method: 'PUT',
-                    url: 'http://' + req.headers.host + API + 'update/:facultyId'
+                    url: 'http://' + req.headers.host + API + 'update/:id'
                 },
                 deleteFaculty: {
                     method: 'DELETE',
@@ -54,8 +54,8 @@ module.exports = function (app) {
         });
     });
 
-    app.put(API + 'update/:facultyId', function (req, res) {
-        Faculty.update(req.params, req.body, function (err, numberAffected, response) {
+    app.put(API + 'update/:id', function (req, res) {
+        Faculty.update(req.params.id, req.body, function (err, numberAffected, response) {
             if (err) {
                 res.status(500).send(response);
             } else {
