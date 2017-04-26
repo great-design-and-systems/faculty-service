@@ -20,7 +20,7 @@ module.exports = function (app) {
                 },
                 updateFaculty: {
                     method: 'PUT',
-                    url: 'http://' + req.headers.host + API + 'update/:id'
+                    url: 'http://' + req.headers.host + API + 'update/:facultyId'
                 },
                 deleteFaculty: {
                     method: 'DELETE',
