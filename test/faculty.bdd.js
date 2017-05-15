@@ -76,7 +76,7 @@
                     var expectedResult;
                     beforeEach(function(done) {
                         data.contactNo = '1234567890';
-                        Faculty.update(data, function(err, result) {
+                        Faculty.update(savedResult._id, data, function(err, result) {
                             expectedResult = result;
                             done();
                         });
